@@ -1,7 +1,12 @@
 import React from "react";
 
-function Run({ runObj }) {
-  return <li>{runObj.name}</li>;
+function Run({ runObj, handleClick }) {
+  return (
+    <div>
+      {runObj.name}
+      <button onClick={() => handleClick(runObj)}>+</button>
+    </div>
+  );
 }
 
 export default Run;

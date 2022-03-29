@@ -21,9 +21,7 @@ function UserMtsList({
   return (
     <div>
       <h1>My Mountains</h1>
-      <ul>
-        <li>{uMt}</li>
-      </ul>
+      <ul>{uMt}</ul>
       <div>
         <p>
           <button onClick={onAddMtChange}>

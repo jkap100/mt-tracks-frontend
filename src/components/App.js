@@ -15,6 +15,7 @@ function App() {
   const [mountains, setMountains] = useState([]);
   const [selectUser, setSelectUser] = useState(1);
   const [userMts, setUserMts] = useState([]);
+  const [userRuns, setUserRuns] = useState([]);
   const [addMtVisible, setAddMtVisible] = useState(false);
   const [mountainDetail, setMountainDetail] = useState([]);
 
@@ -38,6 +39,12 @@ function App() {
     fetch(`http://localhost:9292/users/mountains/${id}`)
       .then((res) => res.json())
       .then(setUserMts);
+  }, [id, selectUser]);
+
+  useEffect(() => {
+    fetch(`http://localhost:9292/users/runs/${id}`)
+      .then((res) => res.json())
+      .then(setUserRuns);
   }, [id, selectUser]);
 
   const handleUserChange = (e) => {
@@ -119,6 +126,31 @@ function App() {
       });
   };
 
+  const onAddToMyRuns = (run) => {
+    // console.log(run);
+    const userId = selectUser;
+    const runId = run.id;
+    // console.log(runId);
+
+    const addRun = {
+      user_id: userId,
+      run_id: runId,
+    };
+    // console.log(addMt);
+
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(addRun),
+    };
+
+    fetch(`http://localhost:9292/user_runs`, options)
+      .then((r) => r.json())
+      .then((addRun) => {
+        setUserRuns([...userRuns, addRun]);
+      });
+  };
+  // setUsers(users.map((user) => (user.id === u.id ? u : user)));
   return (
     <div className="App">
       <h1>MT TRACKS</h1>
@@ -160,7 +192,14 @@ function App() {
         />
         <Route
           path={`mountain_detail`}
-          element={<MtDetail mountainDetail={mountainDetail} id={id} />}
+          element={
+            <MtDetail
+              mountainDetail={mountainDetail}
+              id={id}
+              onAddToMyRuns={onAddToMyRuns}
+              userRuns={userRuns}
+            />
+          }
         />
       </Routes>
     </div>
