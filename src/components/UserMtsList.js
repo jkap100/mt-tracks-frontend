@@ -10,9 +10,15 @@ function UserMtsList({
   mountains,
   onAddToMyMts,
   onViewMt,
+  onRemoveMt,
 }) {
   const uMt = userMts.map((um) => (
-    <UserMt key={um.id} userMtObj={um} handleClick={onViewMt} />
+    <UserMt
+      key={um.id}
+      userMtObj={um}
+      handleClick={onViewMt}
+      handleRemove={onRemoveMt}
+    />
   ));
   const mt = mountains.map((mt) => (
     <Mountain key={mt.id} mtObj={mt} handleClick={onAddToMyMts} />

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function UserMt({ userMtObj, handleClick }) {
+function UserMt({ userMtObj, handleClick, handleRemove }) {
   return (
     <div>
       <div>
@@ -20,6 +20,7 @@ function UserMt({ userMtObj, handleClick }) {
               View Mountain
             </button>
           </Link>
+          <button onClick={() => handleRemove(userMtObj)}>Remove</button>
         </div>
       </div>
     </div>

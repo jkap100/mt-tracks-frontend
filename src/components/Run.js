@@ -3,7 +3,7 @@ import React from "react";
 function Run({ runObj, handleClick }) {
   return (
     <div>
-      {runObj.name}
+      {runObj.name} -- Difficulty: {runObj.difficulty}
       <button onClick={() => handleClick(runObj)}>+</button>
     </div>
   );

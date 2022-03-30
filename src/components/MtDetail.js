@@ -3,36 +3,38 @@ import { Link } from "react-router-dom";
 import Run from "./Run";
 import UserRun from "./UserRun";
 
-function MtDetail({ mountainDetail, id, onAddToMyRuns, userRuns }) {
-  const r = mountainDetail[0].runs.map((runObj) => (
+function MtDetail({
+  mountainDetail,
+  id,
+  onAddToMyRuns,
+  userRuns,
+  onRemoveRun,
+}) {
+  const r = mountainDetail.runs.map((runObj) => (
     <Run key={runObj.id} runObj={runObj} handleClick={onAddToMyRuns} />
   ));
 
   const ur = userRuns.map((runObj) => (
-    <UserRun key={runObj.id} runObj={runObj} />
+    <UserRun key={runObj.id} runObj={runObj} handleClick={onRemoveRun} />
   ));
 
-  console.log(mountainDetail[0].runs);
+  console.log(mountainDetail.runs);
   return (
     <div>
-      <h1>{mountainDetail[0].name}</h1>
-      <img
-        className="largeImage"
-        src={mountainDetail[0].image}
-        alt="mountain"
-      />
-      <img className="largeImage" src={mountainDetail[0].map} alt="map" />
+      <h1>{mountainDetail.name}</h1>
+      <img className="largeImage" src={mountainDetail.image} alt="mountain" />
+      <img className="largeImage" src={mountainDetail.map} alt="map" />
       <div id="card-bottom">
-        <h4>{mountainDetail[0].location}</h4>
-        <h5>{mountainDetail[0].country}</h5>
-        <h6>Vertical feet: {mountainDetail[0].vert}</h6>
+        <h4>{mountainDetail.location}</h4>
+        <h5>{mountainDetail.country}</h5>
+        <h6>Vertical feet: {mountainDetail.vert}</h6>
       </div>
       <div>
-        <h4>{mountainDetail[0].name} Runs </h4>
+        <h4>{mountainDetail.name} Runs </h4>
         <ul>{r}</ul>
       </div>
       <div>
-        <h4>My runs at {mountainDetail[0].name}</h4>
+        <h4>My runs at {mountainDetail.name}</h4>
         <ul>{ur}</ul>
       </div>
       <Link to={`/user_mts_list/${id}`}>

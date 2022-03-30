@@ -17,7 +17,7 @@ function App() {
   const [userMts, setUserMts] = useState([]);
   const [userRuns, setUserRuns] = useState([]);
   const [addMtVisible, setAddMtVisible] = useState(false);
-  const [mountainDetail, setMountainDetail] = useState([]);
+  const [mountainDetail, setMountainDetail] = useState({});
 
   const id = parseInt(selectUser);
 
@@ -59,7 +59,7 @@ function App() {
   };
 
   const onViewMt = (mountain) => {
-    setMountainDetail([mountain]);
+    setMountainDetail(mountain);
   };
 
   const addNewUser = (newUser) => {
@@ -96,7 +96,7 @@ function App() {
 
   const isMtUnique = (mountain) => {
     // console.log(mountain);
-    if (!userMts.includes(mountain)) {
+    if (!userMts.map((mt) => mt.id).includes(mountain.id)) {
       onAddToMyMts(mountain);
     }
   };
@@ -150,7 +150,19 @@ function App() {
         setUserRuns([...userRuns, addRun]);
       });
   };
-  // setUsers(users.map((user) => (user.id === u.id ? u : user)));
+
+  const onRemoveRun = (run) => {
+    console.log(run);
+    fetch(`http://localhost:9292/users/${id}/runs/${run.id}`, {
+      method: "DELETE",
+    });
+    setUserRuns(userRuns.filter((r) => r !== run));
+  };
+
+  const onRemoveMt = (mt) => {
+    console.log(mt);
+  };
+
   return (
     <div className="App">
       <h1>MT TRACKS</h1>
@@ -187,6 +199,7 @@ function App() {
               // onAddToMyMts={onAddToMyMts}
               onAddToMyMts={isMtUnique}
               onViewMt={onViewMt}
+              onRemoveMt={onRemoveMt}
             />
           }
         />
@@ -198,6 +211,7 @@ function App() {
               id={id}
               onAddToMyRuns={onAddToMyRuns}
               userRuns={userRuns}
+              onRemoveRun={onRemoveRun}
             />
           }
         />
