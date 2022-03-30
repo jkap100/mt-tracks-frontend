@@ -126,6 +126,13 @@ function App() {
       });
   };
 
+  const isRunUnique = (run) => {
+    // console.log(mountain);
+    if (!userRuns.map((r) => r.id).includes(run.id)) {
+      onAddToMyRuns(run);
+    }
+  };
+
   const onAddToMyRuns = (run) => {
     // console.log(run);
     const userId = selectUser;
@@ -209,7 +216,7 @@ function App() {
             <MtDetail
               mountainDetail={mountainDetail}
               id={id}
-              onAddToMyRuns={onAddToMyRuns}
+              onAddToMyRuns={isRunUnique}
               userRuns={userRuns}
               onRemoveRun={onRemoveRun}
             />
