@@ -3,8 +3,17 @@ import React from "react";
 function Run({ runObj, handleClick }) {
   return (
     <div>
-      {runObj.name} -- Difficulty: {runObj.difficulty}
-      <button onClick={() => handleClick(runObj)}>+</button>
+      <p>
+        {runObj.name} -- Difficulty: {runObj.difficulty}
+        <div className="runBtn">
+          <button
+            className="is-small button is-light is-responsive is-outlined"
+            onClick={() => handleClick(runObj)}
+          >
+            +
+          </button>
+        </div>
+      </p>
     </div>
   );
 }

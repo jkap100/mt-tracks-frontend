@@ -14,22 +14,37 @@ function EditUserForm({ onEditUser }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="container">
+      <form className="box-form" onSubmit={handleSubmit}>
         <div>
-          <input
-            value={updateEmail}
-            onChange={(e) => setUpdateEmail(e.target.value)}
-            type="text"
-            name="email"
-            placeholder="Email Address"
-          />
+          <div className="field">
+            <label className="label">Edit Email</label>
+            <div className="control">
+              <input
+                className="input"
+                value={updateEmail}
+                onChange={(e) => setUpdateEmail(e.target.value)}
+                type="text"
+                name="email"
+                placeholder="Email Address"
+              />
+            </div>
+          </div>
+
+          <div className="field is-grouped">
+            <p className="control">
+              <button className="button is-dark" type="submit">
+                Edit Email
+              </button>
+            </p>
+            <p className="control">
+              <Link to="/">
+                <button className="button is-light">Cancel</button>
+              </Link>
+            </p>
+          </div>
         </div>
-        <button type="submit">Edit Email</button>
       </form>
-      <p>
-        <Link to="/">Cancel</Link>
-      </p>
     </div>
   );
 }

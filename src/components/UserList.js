@@ -7,33 +7,49 @@ function UserList({ users, onUserChange, selectUser }) {
   const user = users.map((u) => <User key={u.id} userObj={u} />);
 
   return (
-    <div>
-      <label>
-        Select your username:
-        <select value={selectUser} onChange={onUserChange}>
-          <option value="" disabled>
-            Select a User
-          </option>
-          {user}
-        </select>
-      </label>
-      <p>
-        <Link to={`/user_mts_list/${selectUser}`}>
-          <button>Go to My Mountains</button>
-        </Link>
-      </p>
-      <div>
-        <p>
-          <Link to="/new_user_form">
-            <button>Create New User</button>
-          </Link>
-        </p>
-        <p>
-          <Link to="/edit_user_form">
-            <button>Edit User</button>
-          </Link>
-        </p>
-      </div>
+    <div className="container">
+      <form className="box">
+        <div className="field">
+          <label className="label">Select your username:</label>
+          <div className="control">
+            <div className="select">
+              <select value={selectUser} onChange={onUserChange}>
+                <option value="" disabled>
+                  Select a User
+                </option>
+                {user}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="field">
+          <p className="control">
+            <Link to={`/user_mts_list/${selectUser}`}>
+              <button className="button is-dark">Go to My Mountains</button>
+            </Link>
+          </p>
+        </div>
+
+        <div className="block">
+          <div className="field is-grouped">
+            <p className="control">
+              <Link to="/new_user_form">
+                <button className="button is-dark is-outlined">
+                  Create New User
+                </button>
+              </Link>
+            </p>
+            <p className="control">
+              <Link to="/edit_user_form">
+                <button className="button is-dark is-outlined">
+                  Edit User
+                </button>
+              </Link>
+            </p>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }

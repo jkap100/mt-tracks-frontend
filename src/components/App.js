@@ -1,13 +1,15 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 import UserList from "./UserList";
 import NewUserForm from "./NewUserForm";
 import EditUserForm from "././EditUserForm";
 import UserMtsList from "./UserMtsList";
 import MtDetail from "./MtDetail";
+import Map from "./Map";
+import UserRuns from "./UserRuns";
 
 function App() {
   const navigate = useNavigate("");
@@ -18,6 +20,8 @@ function App() {
   const [userRuns, setUserRuns] = useState([]);
   const [addMtVisible, setAddMtVisible] = useState(false);
   const [mountainDetail, setMountainDetail] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+  const [map, setMap] = useState("");
 
   const id = parseInt(selectUser);
 
@@ -170,10 +174,22 @@ function App() {
     console.log(mt);
   };
 
+  const filteredMts = mountains.filter((mt) => {
+    return (
+      mt.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+      mt.location.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+    );
+  });
+
+  const handleClickMap = (m) => {
+    console.log(m);
+    setMap(m.map);
+    console.log(map);
+  };
+
   return (
     <div className="App">
-      <h1>MT TRACKS</h1>
-
+      <Header />
       <Routes>
         <Route
           path="/"
@@ -202,14 +218,18 @@ function App() {
               userMts={userMts}
               onAddMtChange={onAddMtChange}
               addMtVisible={addMtVisible}
-              mountains={mountains}
+              mountains={filteredMts}
               // onAddToMyMts={onAddToMyMts}
               onAddToMyMts={isMtUnique}
               onViewMt={onViewMt}
               onRemoveMt={onRemoveMt}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
             />
           }
         />
+        <Route path="map" element={<Map map={map} />} />
+        <Route path="runs" element={<UserRuns />} />
         <Route
           path={`mountain_detail`}
           element={
@@ -219,6 +239,7 @@ function App() {
               onAddToMyRuns={isRunUnique}
               userRuns={userRuns}
               onRemoveRun={onRemoveRun}
+              handleClickMap={handleClickMap}
             />
           }
         />

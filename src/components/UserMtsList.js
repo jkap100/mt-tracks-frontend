@@ -11,6 +11,8 @@ function UserMtsList({
   onAddToMyMts,
   onViewMt,
   onRemoveMt,
+  searchTerm,
+  setSearchTerm,
 }) {
   const uMt = userMts.map((um) => (
     <UserMt
@@ -25,20 +27,59 @@ function UserMtsList({
   ));
 
   return (
-    <div>
-      <h1>My Mountains</h1>
-      <ul>{uMt}</ul>
+    <div className="container">
       <div>
-        <p>
-          <button onClick={onAddMtChange}>
-            {addMtVisible ? "Hide Mountains" : "Add Mountains"}
-          </button>
-        </p>
+        <div>
+          {!addMtVisible && (
+            <div>
+              <div className="box">
+                <h1 className="title is-2 header">My Mountains</h1>
+              </div>
+              <div className="columns is-multiline">{uMt}</div>
+            </div>
+          )}
+        </div>
+
+        <hr></hr>
+
+        <div>
+          {addMtVisible && (
+            <div>
+              <div>
+                <div className="Card">{mt}</div>
+
+                <form>
+                  <div>
+                    <input
+                      className="input is-dark is-focused"
+                      id="search"
+                      value={searchTerm}
+                      type="text"
+                      placeholder="Search Mts"
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+          <div>
+            <p>
+              <button
+                className="mb-2 mt-4 button is-dark is-responsive is-outlined"
+                onClick={onAddMtChange}
+              >
+                {addMtVisible ? "My Mountains" : "Add Mountains"}
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
-      <div>{addMtVisible && <div>{mt}</div>}</div>
       <p>
         <Link to="/">
-          <button>Log Out</button>
+          <button className="mt-2 mb-6 button is-dark is-focused">
+            Log Out
+          </button>
         </Link>
       </p>
     </div>
