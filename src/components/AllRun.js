@@ -2,9 +2,13 @@ import React from "react";
 
 function AllRun({ urObj }) {
   return (
-    <div className="container">
-      <div>
-        {urObj.name} -- {urObj.difficulty} -- {urObj.mountain}
+    <div className="">
+      <div className="card">
+        <div className="card-content">
+          <div className="content">
+            {urObj.name} -- {urObj.difficulty}
+          </div>
+        </div>
       </div>
     </div>
   );

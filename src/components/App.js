@@ -235,7 +235,7 @@ function App() {
           }
         />
         <Route path="map" element={<Map map={map} />} />
-        <Route path="runs" element={<UserRuns userRuns={userRuns} />} />
+        <Route path="runs" element={<UserRuns userRuns={userRuns} id={id} />} />
         <Route
           path={`mountain_detail`}
           element={
