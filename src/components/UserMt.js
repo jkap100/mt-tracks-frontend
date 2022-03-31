@@ -34,7 +34,7 @@ function UserMt({ userMtObj, handleClick, handleRemove }) {
         <div className="card-footer is-centered">
           <Link to="/mountain_detail">
             <button
-              className="mt-2 mb-2 button is-dark is-responsive"
+              className="mt-2 mb-2 button ml-4 is-dark is-responsive"
               onClick={() => handleClick(userMtObj)}
             >
               View Mountain
