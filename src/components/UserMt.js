@@ -6,8 +6,8 @@ function UserMt({ userMtObj, handleClick, handleRemove }) {
     <div className="column is-one-quarter">
       <div className="card mx-2">
         <div className="card-header">
-          <p className="card-header-title level is-centered">
-            <h3 className="level">{userMtObj.name}</h3>
+          <p className="card-header-title level is-centered is-size-5">
+            <h3 className="has-text-weight-bold level">{userMtObj.name}</h3>
           </p>
         </div>
 
