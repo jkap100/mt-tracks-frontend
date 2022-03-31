@@ -75,7 +75,7 @@ function MtDetail({
             My Mountains
           </button>
         </Link>
-        <Link to="/">
+        <Link to="/runs">
           <button className="mt-4 mb-6 mr-4 button is-dark is-focused is-outlined">
             All Runs
           </button>

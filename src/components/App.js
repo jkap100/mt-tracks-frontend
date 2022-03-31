@@ -181,6 +181,12 @@ function App() {
     );
   });
 
+  const filteredRuns = userRuns.filter((r) => {
+    return r.mountain_id === mountainDetail.id;
+  });
+
+  // setUsers(users.map((user) => (user.id === u.id ? u : user)));
+
   const handleClickMap = (m) => {
     console.log(m);
     setMap(m.map);
@@ -229,7 +235,7 @@ function App() {
           }
         />
         <Route path="map" element={<Map map={map} />} />
-        <Route path="runs" element={<UserRuns />} />
+        <Route path="runs" element={<UserRuns userRuns={userRuns} />} />
         <Route
           path={`mountain_detail`}
           element={
@@ -237,7 +243,7 @@ function App() {
               mountainDetail={mountainDetail}
               id={id}
               onAddToMyRuns={isRunUnique}
-              userRuns={userRuns}
+              userRuns={filteredRuns}
               onRemoveRun={onRemoveRun}
               handleClickMap={handleClickMap}
             />
